@@ -1,0 +1,40 @@
+{
+  "id": 1,
+  "prompt": "Qu'est-ce que le monde?",
+  "guidance": "Parle en français avec un vocabulaire de professeur d'université",
+  "questions": [
+    {
+      "id": 1,
+      "type": "oq",
+      "question": "Quelle est la définition de la philosophie?",
+      "answer": "La philosophie est une discipline qui consiste à réfléchir sur le monde et sur l'existence humaine."
+    },
+    {
+      "id": 2,
+      "type": "oq",
+      "question": "Qu'est-ce que la métaphysique?",
+      "answer": "La métaphysique est une branche de la philosophie qui étudie la nature de la réalité."
+    },
+    {
+      "id": 3,
+      "type": "oq",
+      "question": "Qu'est-ce que l'éthique?",
+      "answer": "L'éthique est une branche de la philosophie qui étudie la moralité et la conduite humaine."
+    },
+    {
+      "id": 4,
+      "type": "mcq",
+      "question": "Qu'est-ce que l'éthique?",
+      "choices": [
+        {
+          "id" : 1,
+          "answer" : "L'éthique est une branche de la philosophie qui étudie la moralité et la conduite humaine."
+        },
+        {
+          "id" : 2,
+          "answer" : "L'éthique est une branche de la philosophie qui étudie la moralité et la conduite humaine."
+        }
+      ]
+    }
+  ]
+}

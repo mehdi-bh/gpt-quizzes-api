@@ -1,0 +1,12 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+/gpt-quizzes-api.iml
+/vcs.xml
+/modules.xml
+/.idea/*
+/node_modules
+/.env
+/package-lock.json
