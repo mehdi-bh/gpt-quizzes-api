@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const {getQuizzes, getQuiz} = require("./dynamodb/dynamo");
+const {getResponse} = require("./openai/gpt");
 
 const app = express();
 app.use(bodyParser.json());
@@ -41,8 +42,10 @@ app.get('/quiz/:id', async (req, res) => {
     3. Store object in dynamoDB
 */
 /* Post */
-app.post('/quiz', (req, res) => {
+app.post('/quiz', async (req, res) => {
     let data = req.body;
-    res.send(data.prompt);
+    const response = await getResponse();
+    console.log(response.data);
+    res.json(response.data);
 })
 

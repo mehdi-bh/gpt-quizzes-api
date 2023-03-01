@@ -21,14 +21,14 @@ const getQuiz = async (id) => {
         }
     };
     return await dynamoClient.scan(params).promise();
-}
+};
 
 const getQuizzes = async () => {
     const params = {
         TableName: TABLE_NAME
     };
     return await dynamoClient.scan(params).promise();
-}
+};
 
 const createQuiz = async (quiz) => {
     quiz.id = uuid.v1();
@@ -37,7 +37,7 @@ const createQuiz = async (quiz) => {
         Item: quiz
     }
     return await dynamoClient.put(params).promise();
-}
+};
 
 const updateQuiz = async (quiz) => {
     const params = {
@@ -45,7 +45,7 @@ const updateQuiz = async (quiz) => {
         Item: quiz
     }
     return await dynamoClient.put(params).promise();
-}
+};
 
 const deleteQuiz = async (id) => {
     const params = {
@@ -55,7 +55,7 @@ const deleteQuiz = async (id) => {
         }
     };
     return await dynamoClient.delete(params).promise();
-}
+};
 
 module.exports = {
     dynamoClient,
