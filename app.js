@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
-const {getQuizzes, getQuiz} = require("./dynamodb/dynamo");
-const {getResponse} = require("./openai/gpt");
+const {postQuestion} = require("./controller/question");
+const {getQuestions, getQuestionById} = require("./dynamodb/question");
 
 const app = express();
 app.use(bodyParser.json());
@@ -11,11 +11,11 @@ app.listen(8080, () => {
     console.log("Server launched");
 })
 
-/* Get */
-app.get('/quiz', async (req, res) => {
+/**** Questions ****/
+app.get('/question', async (req, res) => {
     try {
-        const quizzes = await getQuizzes();
-        res.json(quizzes);
+        const questions = await getQuestions();
+        res.json(questions);
     }
     catch (error) {
         console.error(error);
@@ -23,11 +23,11 @@ app.get('/quiz', async (req, res) => {
     }
 })
 
-app.get('/quiz/:id', async (req, res) => {
+app.get('/question/:id', async (req, res) => {
     const id = req.params.id;
     try {
-        const quiz = await getQuiz(id);
-        res.json(quiz);
+        const question = await getQuestionById(id);
+        res.json(question);
     }
     catch (error) {
         console.error(error);
@@ -35,17 +35,15 @@ app.get('/quiz/:id', async (req, res) => {
     }
 })
 
-
-/* TODO :
-    1. POST prompt & guidance
-    2. Call GPT3 and receive output
-    3. Store object in dynamoDB
-*/
-/* Post */
-app.post('/quiz', async (req, res) => {
-    let data = req.body;
-    const response = await getResponse();
-    console.log(response.data);
-    res.json(response.data);
+app.post('/question', async (req, res) => {
+    const body = req.body;
+    try {
+        const questions = await postQuestion(body);
+        res.json(questions);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ err: 'Something went wrong' });
+    }
 })
 
