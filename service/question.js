@@ -8,7 +8,8 @@ const generateOpenQuestion = async (body) => {
 
     const prompt = makeOpenQuestionPrompt(content, guidance, language, quantity.easy, quantity.medium, quantity.hard);
     const response = await getResponse(prompt);
-    return JSON.parse(response.data.choices[0].text);
+
+    return JSON.parse(response.data.choices[0].message.content);
 }
 
 module.exports = {
