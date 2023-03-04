@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 
 const GPT3_MODEL = "gpt-3.5-turbo";
 const TEMPERATURE = 0;
-const MAX_TOKENS = 400;
+const MAX_TOKENS = 500;
 
 const getResponse = async (prompt) => {
     return await openai.createChatCompletion({

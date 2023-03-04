@@ -1,11 +1,12 @@
-const {generateOpenQuestion} = require("../service/question");
+const {generateOpenQuestion, generateMultipleChoicesQuestion, generateMultipleAnswersQuestion} = require("../service/question");
 const {createQuestion} = require("../dynamodb/question");
 const postQuestion = async (body) => {
     const type = body.type;
 
+    let questions = [];
     switch (type) {
         case "OQ":
-            const questions = await generateOpenQuestion(body);
+            questions = await generateOpenQuestion(body);
 
             questions.forEach(q => {
                 q.type = "OQ";
@@ -15,10 +16,24 @@ const postQuestion = async (body) => {
             return questions;
 
         case "MCQ":
-            // TODO: multiple choice questions
+            questions = await generateMultipleChoicesQuestion(body);
+
+            questions.forEach(q => {
+                q.type = "MCQ";
+                createQuestion(q);
+            });
+
+            return questions;
 
         case "MAQ":
-            // TODO: multiple answer questions
+            questions = await generateMultipleAnswersQuestion(body);
+
+            questions.forEach(q => {
+                q.type = "MAQ";
+                createQuestion(q);
+            });
+
+            return questions;
     }
 }
 
